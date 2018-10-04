@@ -3,7 +3,7 @@ Format Transform Layer: A DSL for easy data transforms.
 
 ## Abstract
 
-When moving data it's often necessary to transform the data from one format to another.  This can be converting or restructuring serial formats such as between XML, JSON, CSV, and Protobuf.  It could also mean simply remapping dictionaries of data.  This process tends to be unwieldy and requires many lines of code.  Consider the following procedure.
+When moving data it's often necessary to transform the data from one format to another, or to simply map a formatted file to an in memory structure.  This can be converting or restructuring serial formats such as between XML, JSON, CSV, and Protobuf.  It could also mean simply remapping dictionaries of data.  This process tends to be unwieldy and requires many lines of code.  Consider the following procedure.
 
 1. Deserializing the input format
 2. Retrieving individual fields from the deserialized document
