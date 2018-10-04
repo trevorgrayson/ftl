@@ -100,3 +100,21 @@ By using the fetched values above, and the same KV definition we would render th
   "genres": ["Action", "Crime"]
 }
 ```
+
+## Comparison
+
+### Serializing XML in Java
+
+If we look at rendering the same XML dynamically in Java, we find that it takes minimally 3x as much code.
+```
+Element root=new Element("movie");
+Document doc=new Document();
+
+Element title=new Element("title");
+title.addContent("Heat");
+root.addContent(title);
+
+... repeat for each element ...
+
+doc.setRootElement(root);
+```
