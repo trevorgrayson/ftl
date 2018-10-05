@@ -101,6 +101,16 @@ By using the fetched values above, and the same KV definition we would render th
 }
 ```
 
+### Cascading Selectors
+
+Much of the volume of mapping code comes from the business logic to select values.  Default values and cascading selection of fields that may or may not be present lead to unweildy conditional trees.  FTL should provide tools to fall back on values when fields are missing.
+
+```
+
+title: title|name
+description: descriptions/description[lang=en,es]
+```
+
 ## Comparison
 
 ### Serializing XML in Java
