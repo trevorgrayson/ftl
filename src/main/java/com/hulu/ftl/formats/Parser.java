@@ -13,20 +13,29 @@ public abstract class Parser {
     public Map extract(ArrayList<FTLField> fields) {
         Map map = new HashMap<>();
 
-        fields.forEach(field -> map.put(field.key,
-            field.isMultiValue ? getValues(field) : getValue(field)
-        ));
+        for(FTLField field : fields) {
+            for(String selector : field.selectors) {
+
+                map.put(field.key,
+                        field.isMultiValue ? getValues(selector) : getValue(selector)
+                );
+
+                if(map.get(selector) != null)
+                    continue;
+
+            }
+        }
 
         return map;
     }
 
-    public String getValue(FTLField field) {
+    public String getValue(String selector) {
         throw new NotImplementedException();
     }
 
-    public List<String> getValues(FTLField field) {
+    public List<String> getValues(String selector) {
         ArrayList<String> list = new ArrayList<>();
-        list.add(getValue(field));
+        list.add(getValue(selector));
 
         return list;
     }

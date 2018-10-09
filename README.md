@@ -13,6 +13,7 @@ When moving data it's often necessary to transform the data from one format to a
 The purpose of the FTL standard is to provide easily readable, declarative, reading and transformation of data.  FTL is a terse DSL that defines both how to extract data from serialized formats and how to write data back to the same formats.  Core FTL does not understand the nuances of individual file formats and an FTL definition should generally work to serialize or deserialize data to any of the implemented formats.
 
 ## The FTL Standard
+Version 0.1
 
 Data leaving this system can be easily grouped into two structures: value tuples, and key-value maps.  In either format each line represents one field that will be output from the transformation.
 

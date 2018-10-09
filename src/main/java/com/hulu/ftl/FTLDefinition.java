@@ -13,16 +13,17 @@ public class FTLDefinition {
 
     ArrayList<FTLField> fields = new ArrayList<>();
 
-    public FTLDefinition(String filename) {
+    public FTLDefinition(String configFTL) {
+
         Yaml yaml = new Yaml();
         InputStream inputStream = this.getClass()
                 .getClassLoader()
-                .getResourceAsStream(filename);
+                .getResourceAsStream(configFTL);
 
         Map<String, Object> config = yaml.load(inputStream);
 
         config.forEach((key, val) ->
-            fields.add(new FTLField(key, val.toString()))
+            fields.add(new FTLField(key, val))
         );
     }
 

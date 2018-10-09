@@ -7,29 +7,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class FtlApplicationTests {
+public class ProgramTests {
     Map program;
 
     @Before
     public void initialize() throws Exception {
-        FTLDefinition definition = new FTLDefinition("movie.ftl");
-        program =  definition.parse("movie.xml");
-    }
-
-    @Test
-    public void parseProgram() {
-        assertEquals("Series", program.get("type"));
-//        ratings: ratings/rating
-//        genres: genres/genre
-//        type: progType
+        FTLDefinition definition = new FTLDefinition("program.ftl");
+        program =  definition.parse("program.xml");
     }
 
     @Test
@@ -54,8 +44,8 @@ public class FtlApplicationTests {
     }
 
     @Test
-    public void multiValue() {
-        ArrayList titles = (ArrayList) program.get("title");
+    public void genres() {
+        ArrayList titles = (ArrayList) program.get("genres");
 
         assertEquals(2, titles.size());
         assertEquals("The unbelievable journey in a crazy plane", titles.get(0));
@@ -68,17 +58,4 @@ public class FtlApplicationTests {
         assertEquals("Sitcom", genres.get(0));
     }
 
-    @Test
-    public void actor() {
-        HashMap actors = (HashMap) program.get("actor");
-        assertEquals("Richard", actors.get("first"));
-        assertEquals("Anderson", actors.get("last"));
-    }
-
-//    @Test
-//    public void actors() {
-//        List<HashMap> actors = (List<HashMap>) program.get("actors");
-//        assertEquals("Richard", actors.get(0).get("first"));
-////        assertEquals("Anderson", actors.get("last"));
-//    }
 }

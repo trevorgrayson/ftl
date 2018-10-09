@@ -1,7 +1,6 @@
 package com.hulu.ftl.formats;
 
 import com.hulu.ftl.FTLField;
-import com.sun.deploy.util.ArrayUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -15,6 +14,7 @@ import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,8 +51,8 @@ public class XMLFormat extends Parser {
     }
 
     @Override
-    public String getValue(FTLField field) {
-        List<String> values = getValues(field);
+    public String getValue(String selector) {
+        List<String> values = getValues(selector);
 
         if(values.size() > 0) {
             return values.get(0);
@@ -62,25 +62,42 @@ public class XMLFormat extends Parser {
     }
 
     @Override
-    public List<String> getValues(FTLField field) {
-        List<String> values = getBySelector(field.selector + "/text()");
+    public List<String> getValues(String selector) {
+        // TODO use | or syntax for attribute
+//        if(field.subSelectors.size() > 0) {
+//            HashMap subMap = new HashMap<>();
+//
+//            for(FTLField subField : field.subSelectors) {
+//                String subSelect = "/" + subField.selectors[0];
+//                subMap.put(subField.key, getValue(subSelect));
+//            }
+//
+//            map.put(field.key, subMap);
+//
+//        }
+        List<String> values = getBySelector(selector + "/text()");
 
         if(values.size() > 0) {
             return values;
         }
 
         // Not found, look for attr
-        String[] elements = field.selector.split("/");
-        String attrSelector = Arrays.stream(
-                Arrays.copyOfRange(elements, 0, elements.length-1)
-        ).collect(Collectors.joining("/"));
+        String[] elements = selector.split("/");
 
-        attrSelector += "@" + elements[elements.length-1];
+        if( elements.length > 0) {
+            Integer end = elements.length > 0 ? elements.length - 1 : 0;
 
-        values = getBySelector(attrSelector);
+            String attrSelector = Arrays.stream(
+                    Arrays.copyOfRange(elements, 0, end)
+            ).collect(Collectors.joining("/"));
 
-        if(values.size() > 0) {
-            return values;
+            attrSelector += "@" + elements[end];
+
+            values = getBySelector(attrSelector);
+
+            if(values.size() > 0) {
+                return values;
+            }
         }
 
         return new ArrayList<>();
