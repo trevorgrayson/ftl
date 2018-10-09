@@ -44,7 +44,7 @@ id
 title
 descriptions/description
 year
-genres/genre
+genres/genre*
 ```
 
 
@@ -78,12 +78,18 @@ The FTL definition could be used to fetch these values:
 ```
 id: 123
 title: Heat
-descriptions: ["A great Movie", "Una gran película"]
+descriptions: "A great Movie"
 premiere: 1995
 genres: ["Action", "Crime"]
 ```
 
 The same KV Definition can be used to render another XML document.  In this case, it would render an XML document, but may not necessarily render the same XML document.
+
+##### Array Responses
+
+Due to the nature of XML, multiple elements could match, such as in the `genres/genre` case.  Selectors are written with
+the assumption that a single value is more often desirable to be returned, but a multi-value response is possible.  If you would like all matching 
+elements to be returned, the last character of the selector should be an `*`.  Note, a `/` should not preceed the `*`. 
 
 #### JSON Selectors
 

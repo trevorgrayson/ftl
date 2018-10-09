@@ -1,0 +1,67 @@
+<program TMSId="EP000000060001" rootId="1008385" connectorId="SH000000060000" seriesId="317718">
+    <titles>
+        <title size="120" type="full" lang="en">&apos;Allo &apos;Allo!</title>
+        <title size="10" type="red" lang="en">&apos;Allo!</title>
+    </titles>
+    <descriptions>
+        <desc size="255" type="plot" lang="en">Rene treads a delicate path with local German officers in order to obtain the small luxuries of life.</desc>
+        <desc size="100" type="plot" lang="en">The proprietor of a small French cafe hides two British airmen.</desc>
+        <desc size="60" type="plot" lang="en">The proprietor of a French cafe hides British airmen.</desc>
+        <desc size="40" type="plot" lang="en">Cafe owner hides British airmen.</desc>
+    </descriptions>
+    <cast>
+        <member personId="383774" ord="01">
+            <role>Actor</role>
+            <name nameId="392649">
+                <first>Gorden</first>
+                <last>Kaye</last>
+            </name>
+        </member>
+        <member personId="246840" ord="02">
+            <role>Actor</role>
+            <name nameId="250387">
+                <first>Carmen</first>
+                <last>Silvera</last>
+            </name>
+        </member>
+        <member personId="376955" ord="03">
+            <role>Actor</role>
+            <name nameId="385830">
+                <first>Rose</first>
+                <last>Hill</last>
+            </name>
+        </member>
+        <member personId="259773" ord="04">
+            <role>Actor</role>
+            <name nameId="263340">
+                <first>Vicki</first>
+                <last>Michelle</last>
+            </name>
+        </member>
+        <member personId="353113" ord="05">
+            <role>Actor</role>
+            <name nameId="361987">
+                <first>Kirsten</first>
+                <last>Cooke</last>
+            </name>
+        </member>
+    </cast>
+    <progType>Series</progType>
+    <genres>
+        <genre genreId="188">Sitcom</genre>
+    </genres>
+    <ratings>
+        <rating area="Canadian Parental Rating" code="G" ratingsBody="Canadian Parental Rating"> </rating>
+        <rating area="R&#x00E9;gie du cin&#x00E9;ma" code="G" description="General" ratingsBody="R&#x00E9;gie du cin&#x00E9;ma"> </rating>
+        <rating area="USA Parental Rating" code="TVG" ratingsBody="USA Parental Rating"> </rating>
+    </ratings>
+    <origAirDate>1982-12-30</origAirDate>
+    <colorCode>Color</colorCode>
+    <episodeInfo>
+        <title size="150" type="full" lang="en">Pilot</title>
+        <synNum>101</synNum>
+        <altSynNum>1</altSynNum>
+    </episodeInfo>
+    <origAudioLang>en-GB</origAudioLang>
+    <sourceType>Syndicated</sourceType>
+</program>
