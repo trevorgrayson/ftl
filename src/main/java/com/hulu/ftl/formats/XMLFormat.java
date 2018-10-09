@@ -51,8 +51,8 @@ public class XMLFormat extends Parser {
     }
 
     @Override
-    public String getValue(FTLField field) {
-        List<String> values = getValues(field);
+    public String getValue(String selector) {
+        List<String> values = getValues(selector);
 
         if(values.size() > 0) {
             return values.get(0);
@@ -62,25 +62,30 @@ public class XMLFormat extends Parser {
     }
 
     @Override
-    public List<String> getValues(FTLField field) {
-        List<String> values = getBySelector(field.selector + "/text()");
+    public List<String> getValues(String selector) {
+        List<String> values = getBySelector(selector + "/text()");
 
         if(values.size() > 0) {
             return values;
         }
 
         // Not found, look for attr
-        String[] elements = field.selector.split("/");
-        String attrSelector = Arrays.stream(
-                Arrays.copyOfRange(elements, 0, elements.length-1)
-        ).collect(Collectors.joining("/"));
+        String[] elements = selector.split("/");
 
-        attrSelector += "@" + elements[elements.length-1];
+        if( elements.length > 0) {
+            Integer end = elements.length > 0 ? elements.length - 1 : 0;
 
-        values = getBySelector(attrSelector);
+            String attrSelector = Arrays.stream(
+                    Arrays.copyOfRange(elements, 0, end)
+            ).collect(Collectors.joining("/"));
 
-        if(values.size() > 0) {
-            return values;
+            attrSelector += "@" + elements[end];
+
+            values = getBySelector(attrSelector);
+
+            if(values.size() > 0) {
+                return values;
+            }
         }
 
         return new ArrayList<>();

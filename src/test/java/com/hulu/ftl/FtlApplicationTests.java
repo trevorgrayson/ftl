@@ -37,6 +37,12 @@ public class FtlApplicationTests {
     }
 
     @Test
+    public void fallbackValue() {
+        assertEquals("1008385", program.get("fallback"));
+    }
+
+
+    @Test
     public void selectByAttribute() {
         assertEquals("EP000000060001", program.get("id"));
     }
