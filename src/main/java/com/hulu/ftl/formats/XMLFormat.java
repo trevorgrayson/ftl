@@ -38,6 +38,10 @@ public class XMLFormat extends Parser {
     }
 
     public NodeList findNodes(String[] selectors) {
+        return findNodes(selectors, document);
+    }
+
+    public NodeList findNodes(String[] selectors, Node document) {
         NodeList nodes = null;
 
         try {
@@ -107,12 +111,23 @@ public class XMLFormat extends Parser {
     public List getValues(FTLField field) {
         NodeList rootNodes = findNodes(field.selectors);
 
+        return getValues(field, rootNodes);
+    }
+
+    public List getValues(FTLField field, NodeList rootNodes) {
+
         if(field.hasSubFields()) {
             List list = new ArrayList<>();
             HashMap subMap = new HashMap<>();
 
             for(FTLField subField : field.subSelectors) {
-                subMap.put(subField.key, getValue(subField));
+                // clean this up. ignoring getSelctor
+                try {
+                    NodeList nodes = (NodeList) xPath.compile(subField.selectors[0])
+                            .evaluate(rootNodes.item(0), XPathConstants.NODESET);
+
+                    subMap.put(subField.key, getValues(subField, nodes));
+                } catch( XPathExpressionException ex) {}
             }
 
             list.add(subMap);

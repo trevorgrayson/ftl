@@ -76,10 +76,10 @@ public class FtlApplicationTests {
         assertEquals("Anderson", actor.get("last"));
     }
 
-//    @Test
-//    public void actors() {
-//        List<HashMap> actors = (List<HashMap>) program.get("actors");
-//        assertEquals("Richard", actors.get(0).get("first"));
-////        assertEquals("Anderson", actors.get("last"));
-//    }
+    @Test
+    public void actors() {
+        List<HashMap> actors = (List<HashMap>) program.get("actors");
+        assertEquals("Richard", actors.get(0).get("first"));
+        assertEquals("Anderson", actors.get(0).get("last"));
+    }
 }
