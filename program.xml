@@ -1,67 +1,176 @@
-<program TMSId="EP000000060001" rootId="1008385" connectorId="SH000000060000" seriesId="317718">
-    <titles>
-        <title size="120" type="full" lang="en">&apos;Allo &apos;Allo!</title>
-        <title size="10" type="red" lang="en">&apos;Allo!</title>
-    </titles>
-    <descriptions>
-        <desc size="255" type="plot" lang="en">Rene treads a delicate path with local German officers in order to obtain the small luxuries of life.</desc>
-        <desc size="100" type="plot" lang="en">The proprietor of a small French cafe hides two British airmen.</desc>
-        <desc size="60" type="plot" lang="en">The proprietor of a French cafe hides British airmen.</desc>
-        <desc size="40" type="plot" lang="en">Cafe owner hides British airmen.</desc>
-    </descriptions>
-    <cast>
-        <member personId="383774" ord="01">
-            <role>Actor</role>
-            <name nameId="392649">
-                <first>Gorden</first>
-                <last>Kaye</last>
-            </name>
-        </member>
-        <member personId="246840" ord="02">
-            <role>Actor</role>
-            <name nameId="250387">
-                <first>Carmen</first>
-                <last>Silvera</last>
-            </name>
-        </member>
-        <member personId="376955" ord="03">
-            <role>Actor</role>
-            <name nameId="385830">
-                <first>Rose</first>
-                <last>Hill</last>
-            </name>
-        </member>
-        <member personId="259773" ord="04">
-            <role>Actor</role>
-            <name nameId="263340">
-                <first>Vicki</first>
-                <last>Michelle</last>
-            </name>
-        </member>
-        <member personId="353113" ord="05">
-            <role>Actor</role>
-            <name nameId="361987">
-                <first>Kirsten</first>
-                <last>Cooke</last>
-            </name>
-        </member>
-    </cast>
-    <progType>Series</progType>
-    <genres>
-        <genre genreId="188">Sitcom</genre>
-    </genres>
-    <ratings>
-        <rating area="Canadian Parental Rating" code="G" ratingsBody="Canadian Parental Rating"> </rating>
-        <rating area="R&#x00E9;gie du cin&#x00E9;ma" code="G" description="General" ratingsBody="R&#x00E9;gie du cin&#x00E9;ma"> </rating>
-        <rating area="USA Parental Rating" code="TVG" ratingsBody="USA Parental Rating"> </rating>
-    </ratings>
-    <origAirDate>1982-12-30</origAirDate>
-    <colorCode>Color</colorCode>
-    <episodeInfo>
-        <title size="150" type="full" lang="en">Pilot</title>
-        <synNum>101</synNum>
-        <altSynNum>1</altSynNum>
-    </episodeInfo>
-    <origAudioLang>en-GB</origAudioLang>
-    <sourceType>Syndicated</sourceType>
+<program TMSId="MV000975940000" rootId="26222" versionId="26297" connectorId="MV000975940000">
+<titles>
+    <title size="120" type="full" lang="en">Beautiful Joe</title>
+    <title size="10" type="red" lang="en">Beautiful</title>
+</titles>
+<descriptions>
+    <desc size="250" type="plot" lang="en">A stripper becomes a con artist (Sharon Stone), gets into trouble with the mob and taps a nice-guy florist (Billy Connolly) for help.</desc>
+    <desc size="100" type="plot" lang="en">An ex-stripper (Sharon Stone) gets into trouble with the mob.</desc>
+    <desc size="60" type="plot" lang="en">An ailing florist meets an opportunistic single mother.</desc>
+</descriptions>
+<cast>
+    <member personId="58757" ord="01">
+        <characterName>Hush</characterName>
+        <role>Actor</role>
+        <name nameId="58757">
+            <first>Sharon</first>
+            <last>Stone</last>
+        </name>
+    </member>
+    <member personId="351" ord="02">
+        <characterName>Joe</characterName>
+        <role>Actor</role>
+        <name nameId="351">
+            <first>Billy</first>
+            <last>Connolly</last>
+        </name>
+    </member>
+    <member personId="73436" ord="03">
+        <characterName>Elton</characterName>
+        <role>Actor</role>
+        <name nameId="73436">
+            <first>Gil</first>
+            <last>Bellows</last>
+        </name>
+    </member>
+    <member personId="27299" ord="04">
+        <characterName>George The Geek</characterName>
+        <role>Actor</role>
+        <name nameId="27299">
+            <first>Ian</first>
+            <last>Holm</last>
+        </name>
+    </member>
+    <member personId="74108" ord="05">
+        <characterName>Vivien Mason</characterName>
+        <role>Actor</role>
+        <name nameId="74108">
+            <first>Jurnee</first>
+            <last>Smollett</last>
+        </name>
+    </member>
+    <member personId="235796" ord="06">
+        <characterName>Plumber</characterName>
+        <role>Actor</role>
+        <name nameId="239319">
+            <first>Ben</first>
+            <last>Derrick</last>
+        </name>
+    </member>
+    <member personId="81008" ord="07">
+        <characterName>Frank</characterName>
+        <role>Actor</role>
+        <name nameId="81008">
+            <first>Frank</first>
+            <middle>C.</middle>
+            <last>Turner</last>
+        </name>
+    </member>
+    <member personId="77139" ord="08">
+        <characterName>Sylvie</characterName>
+        <role>Actor</role>
+        <name nameId="77139">
+            <first>Barbara</first>
+            <last>Tyson</last>
+        </name>
+    </member>
+    <member personId="168172" ord="09">
+        <characterName>Lee Mason</characterName>
+        <role>Actor</role>
+        <name nameId="169207">
+            <first>Dillon</first>
+            <last>Moen</last>
+        </name>
+    </member>
+    <member personId="219661" ord="10">
+        <characterName>Off-Duty Soldier</characterName>
+        <role>Actor</role>
+        <name nameId="222078">
+            <first>Kwesi</first>
+            <last>Ameyaw</last>
+        </name>
+    </member>
+</cast>
+<crew>
+    <member personId="190087" ord="01">
+        <role>Director</role>
+        <name nameId="191840">
+            <first>Stephen</first>
+            <last>Metcalfe</last>
+        </name>
+    </member>
+    <member personId="190087" ord="02">
+        <role>Writer</role>
+        <name nameId="191840">
+            <first>Stephen</first>
+            <last>Metcalfe</last>
+        </name>
+    </member>
+    <member personId="367006" ord="03">
+        <role>Producer</role>
+        <name nameId="375881">
+            <first>Fred</first>
+            <last>Fuchs</last>
+        </name>
+    </member>
+    <member personId="291584" ord="04">
+        <role>Producer</role>
+        <name nameId="295417">
+            <first>Steven</first>
+            <last>Haft</last>
+        </name>
+    </member>
+    <member personId="338596" ord="05">
+        <role>Executive Producer</role>
+        <name nameId="347470">
+            <first>Jane</first>
+            <last>Barclay</last>
+        </name>
+    </member>
+    <member personId="374411" ord="06">
+        <role>Executive Producer</role>
+        <name nameId="383286">
+            <first>Sharon</first>
+            <last>Harel</last>
+        </name>
+    </member>
+    <member personId="389730" ord="07">
+        <role>Executive Producer</role>
+        <name nameId="398605">
+            <first>Hannah</first>
+            <last>Leader</last>
+        </name>
+    </member>
+</crew>
+<runTime>PT01H38M</runTime>
+<progType>Feature Film</progType>
+<countries>
+    <country>USA</country>
+</countries>
+<genres>
+    <genre genreId="17">Romantic comedy</genre>
+</genres>
+<ratings>
+    <advisories>
+        <advisory>Adult Language</advisory>
+        <advisory>Adult Situations</advisory>
+    </advisories>
+    <rating area="United States" code="R" description="Restricted" ratingsBody="Motion Picture Association of America">
+    </rating>
+    <rating area="Freiwillige Selbstkontrolle der Filmwirtschaft" code="12" description="Released to age 12 or older and to age 6 or older with parental guidance." ratingsBody="Freiwillige Selbstkontrolle der Filmwirtschaft">
+    </rating>
+    <rating area="Departamento de Justi&#x00E7;a, Classifica&#x00E7;&#x00E3;o, T&#x00ED;tulos e Qualifica&#x00E7;&#x00E3;o" code="16" description="16 anos" ratingsBody="Departamento de Justi&#x00E7;a, Classifica&#x00E7;&#x00E3;o, T&#x00ED;tulos e Qualifica&#x00E7;&#x00E3;o">
+    </rating>
+    <qualityRating ratingsBody="TMS" value="2"/>
+</ratings>
+<colorCode>Color</colorCode>
+<movieInfo>
+    <releases>
+        <release type="Year" date="2000"/>
+        <release type="Original" date="2001-01-19">
+            <country>ESP</country>
+        </release>
+    </releases>
+</movieInfo>
+<origAudioLang>en</origAudioLang>
 </program>

@@ -15,11 +15,14 @@ public abstract class Parser {
 
         for(FTLField field : fields) {
             for(String selector : field.selectors) {
+
                 map.put(field.key,
-                    field.isMultiValue ? getValues(selector) : getValue(selector)
+                        field.isMultiValue ? getValues(selector) : getValue(selector)
                 );
+
                 if(map.get(selector) != null)
                     continue;
+
             }
         }
 

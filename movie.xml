@@ -1,0 +1,54 @@
+<program TMSId="EP000000060001" rootId="1008385" connectorId="SH000000060000" seriesId="317718">
+    <titles>
+        <title size="120" type="full" lang="en">The unbelievable journey in a crazy plane</title>
+        <title size="10" type="red" lang="en">Airplane!</title>
+    </titles>
+    <descriptions>
+        <desc size="255" type="plot" lang="en">I am the very model of a modern major general.</desc>
+        <desc size="100" type="plot" lang="en">Century club.</desc>
+        <desc size="60" type="plot" lang="en">This description is sufficiently long.</desc>
+        <desc size="40" type="plot" lang="en">I'm a Banana.</desc>
+    </descriptions>
+    <cast>
+        <member personId="100" ord="01">
+            <role>Actor</role>
+            <name nameId="1">
+                <first>Richard</first>
+                <last>Anderson</last>
+            </name>
+        </member>
+        <member personId="200" ord="02">
+            <role>Actor</role>
+            <name nameId="2">
+                <first>Dana</first>
+                <last>Elcar</last>
+            </name>
+        </member>
+        <member personId="300" ord="03">
+            <role>Actor</role>
+            <name nameId="3">
+                <first>Michael</first>
+                <last>Vejar</last>
+            </name>
+        </member>
+    </cast>
+    <progType>Series</progType>
+    <genres>
+        <genre genreId="1">Sitcom</genre>
+    </genres>
+    <ratings>
+        <rating area="Canadian Parental Rating" code="G" ratingsBody="Canadian Parental Rating"> </rating>
+        <rating area="R&#x00E9;gie du cin&#x00E9;ma" code="G" description="General" ratingsBody="R&#x00E9;gie du cin&#x00E9;ma"> </rating>
+        <rating area="USA Parental Rating" code="TVG" ratingsBody="USA Parental Rating"> </rating>
+    </ratings>
+    <origAirDate>1982-12-31</origAirDate>
+    <colorCode>Color</colorCode>
+    <episodeInfo>
+        <title size="150" type="full" lang="en">Pilot</title>
+        <synNum>101</synNum>
+        <altSynNum>1</altSynNum>
+    </episodeInfo>
+    <runTime>PT1H30M</runTime>
+    <origAudioLang>en-GB</origAudioLang>
+    <sourceType>Syndicated</sourceType>
+</program>

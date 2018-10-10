@@ -1,7 +1,6 @@
 package com.hulu.ftl.formats;
 
 import com.hulu.ftl.FTLField;
-import com.sun.deploy.util.ArrayUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -15,6 +14,7 @@ import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,6 +63,18 @@ public class XMLFormat extends Parser {
 
     @Override
     public List<String> getValues(String selector) {
+        // TODO use | or syntax for attribute
+//        if(field.subSelectors.size() > 0) {
+//            HashMap subMap = new HashMap<>();
+//
+//            for(FTLField subField : field.subSelectors) {
+//                String subSelect = "/" + subField.selectors[0];
+//                subMap.put(subField.key, getValue(subSelect));
+//            }
+//
+//            map.put(field.key, subMap);
+//
+//        }
         List<String> values = getBySelector(selector + "/text()");
 
         if(values.size() > 0) {
