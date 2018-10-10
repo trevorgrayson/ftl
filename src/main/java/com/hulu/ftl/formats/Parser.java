@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Parser {
+    /*
+        Iterates over FTLFields and gets values back in a Map
+     */
 
     public Map extract(ArrayList<FTLField> fields) {
         Map map = new HashMap<>();
@@ -17,7 +20,7 @@ public abstract class Parser {
             for(String selector : field.selectors) {
 
                 map.put(field.key,
-                        field.isMultiValue ? getValues(selector) : getValue(selector)
+                    field.isMultiValue ? getValues(field) : getValue(field)
                 );
 
                 if(map.get(selector) != null)
@@ -29,13 +32,13 @@ public abstract class Parser {
         return map;
     }
 
-    public String getValue(String selector) {
+    public Object getValue(FTLField field) {
         throw new NotImplementedException();
     }
 
-    public List<String> getValues(String selector) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add(getValue(selector));
+    public List<Object> getValues(FTLField field) {
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(getValue(field));
 
         return list;
     }

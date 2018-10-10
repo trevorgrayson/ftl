@@ -6,7 +6,7 @@ description: descriptions/desc
 premiere: origAirDate
 # blank lines are ok
 
-ratings: ratings/rating*
+ratings: ratings/rating/code*
 genres: genres/genre*
 type: progType
 actor:

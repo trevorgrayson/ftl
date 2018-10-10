@@ -1,7 +1,10 @@
 package com.hulu.ftl.formats;
 
 import com.hulu.ftl.FTLField;
+import com.sun.org.apache.xml.internal.dtm.ref.DTMNodeList;
+import com.sun.org.apache.xml.internal.dtm.ref.DTMNodeListBase;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
@@ -29,20 +32,59 @@ public class XMLFormat extends Parser {
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
             document = builder.parse(filename);
-        } catch (ParserConfigurationException|SAXException|IOException ex) {
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
             throw new IOException();
         }
     }
 
+    public NodeList findNodes(String[] selectors) {
+        NodeList nodes = null;
+
+        try {
+            nodes = (NodeList) xPath.compile("/*")
+                    .evaluate(document, XPathConstants.NODESET);
+
+            for (int x = 0; x < selectors.length; x++) {
+                String selector = selectors[x];
+
+                nodes = (NodeList) xPath.compile("/*/" + selector)
+                        .evaluate(document, XPathConstants.NODESET);
+
+                if (nodes.getLength() > 0) {
+                    return nodes;
+                }
+            }
+
+        } catch (XPathExpressionException ex) { }
+
+        return nodes;
+    }
+
     public ArrayList<String> getBySelector(String selector) {
+        try {
+            NodeList rootNodes = (NodeList) xPath.compile("/*")
+                    .evaluate(document, XPathConstants.NODESET);
+
+            return getBySelector(selector, rootNodes);
+
+        } catch (XPathExpressionException ex) {}
+
+        return new ArrayList<>();
+    }
+
+    public ArrayList<String> getBySelector(String selector, NodeList rootNodes) {
         ArrayList<String> values = new ArrayList<>();
 
         try {
-            NodeList nodes = (NodeList) xPath.compile("/*/" + selector)
-                    .evaluate(document, XPathConstants.NODESET);
+            for(int x=0; x < rootNodes.getLength(); x++) {
+                Node rootNode = rootNodes.item(x);
 
-            for (int i = 0; i < nodes.getLength(); i++) {
-                values.add(nodes.item(i).getNodeValue());
+                NodeList nodes = (NodeList) xPath.compile(selector)
+                        .evaluate(rootNode, XPathConstants.NODESET);
+
+                for (int i = 0; i < nodes.getLength(); i++) {
+                    values.add(nodes.item(i).getNodeValue());
+                }
             }
 
         } catch (XPathExpressionException ex) {}
@@ -51,8 +93,8 @@ public class XMLFormat extends Parser {
     }
 
     @Override
-    public String getValue(String selector) {
-        List<String> values = getValues(selector);
+    public Object getValue(FTLField field) {
+        List<String> values = getValues(field);
 
         if(values.size() > 0) {
             return values.get(0);
@@ -62,44 +104,53 @@ public class XMLFormat extends Parser {
     }
 
     @Override
-    public List<String> getValues(String selector) {
-        // TODO use | or syntax for attribute
-//        if(field.subSelectors.size() > 0) {
-//            HashMap subMap = new HashMap<>();
-//
-//            for(FTLField subField : field.subSelectors) {
-//                String subSelect = "/" + subField.selectors[0];
-//                subMap.put(subField.key, getValue(subSelect));
-//            }
-//
-//            map.put(field.key, subMap);
-//
-//        }
-        List<String> values = getBySelector(selector + "/text()");
+    public List getValues(FTLField field) {
+        NodeList rootNodes = findNodes(field.selectors);
 
-        if(values.size() > 0) {
-            return values;
-        }
+        if(field.hasSubFields()) {
+            List list = new ArrayList<>();
+            HashMap subMap = new HashMap<>();
 
-        // Not found, look for attr
-        String[] elements = selector.split("/");
+            for(FTLField subField : field.subSelectors) {
+                subMap.put(subField.key, getValue(subField));
+            }
 
-        if( elements.length > 0) {
-            Integer end = elements.length > 0 ? elements.length - 1 : 0;
+            list.add(subMap);
 
-            String attrSelector = Arrays.stream(
-                    Arrays.copyOfRange(elements, 0, end)
-            ).collect(Collectors.joining("/"));
+            return list;
 
-            attrSelector += "@" + elements[end];
+        } else {
 
-            values = getBySelector(attrSelector);
+            // find element text
+            List values = getBySelector("./text()", rootNodes);
 
             if(values.size() > 0) {
                 return values;
             }
+
+            // Not found, look for attr
+            for(String selector : field.selectors) {
+                String[] elements = selector.split("/");
+
+                if( elements.length > 0) {
+                    Integer end = elements.length > 0 ? elements.length - 1 : 0;
+
+                    String attrSelector = Arrays.stream(
+                            Arrays.copyOfRange(elements, 0, end)
+                    ).collect(Collectors.joining("/"));
+
+                    attrSelector += "@" + elements[end];
+
+                    values = getBySelector(attrSelector);
+
+                    if(values.size() > 0) {
+                        return values;
+                    }
+                }
+            }
+
         }
 
-        return new ArrayList<>();
+        return new ArrayList();
     }
 }
