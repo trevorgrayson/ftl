@@ -37,51 +37,46 @@ public class XMLFormat extends Parser {
         }
     }
 
-    public NodeList findNodes(String[] selectors) {
-        return findNodes(selectors, document);
+    public ArrayList<Node> findNodes(String[] selectors) {
+        String[] rootSelectors = selectors.clone();
+
+        for(int x=0; x<rootSelectors.length; x++) {
+            rootSelectors[x] = "/*/" + rootSelectors[x];
+        }
+
+        return findNodes(rootSelectors, document);
     }
 
-    public NodeList findNodes(String[] selectors, Node document) {
-        NodeList nodes = null;
+    public ArrayList<Node> findNodes(String[] selectors, Node document) {
+        ArrayList nodes = null;
 
-        try {
-            nodes = (NodeList) xPath.compile("/*")
-                    .evaluate(document, XPathConstants.NODESET);
+        nodes = nodeArray("/*", document);
 
-            for (int x = 0; x < selectors.length; x++) {
-                String selector = selectors[x];
+        for (int x = 0; x < selectors.length; x++) {
+            String selector = selectors[x];
 
-                nodes = (NodeList) xPath.compile("/*/" + selector)
-                        .evaluate(document, XPathConstants.NODESET);
+            nodes = nodeArray(selector, document);
 
-                if (nodes.getLength() > 0) {
-                    return nodes;
-                }
+            if (nodes.size() > 0) {
+                return nodes;
             }
-
-        } catch (XPathExpressionException ex) { }
+        }
 
         return nodes;
     }
 
     public ArrayList<String> getBySelector(String selector) {
-        try {
-            NodeList rootNodes = (NodeList) xPath.compile("/*")
-                    .evaluate(document, XPathConstants.NODESET);
-
-            return getBySelector(selector, rootNodes);
-
-        } catch (XPathExpressionException ex) {}
-
-        return new ArrayList<>();
+        return getBySelector(selector, nodeArray("/*", document));
     }
 
-    public ArrayList<String> getBySelector(String selector, NodeList rootNodes) {
+    public ArrayList<String> getBySelector(String selector, ArrayList<Node> rootNodes) {
         ArrayList<String> values = new ArrayList<>();
 
         try {
-            for(int x=0; x < rootNodes.getLength(); x++) {
-                Node rootNode = rootNodes.item(x);
+            for(int x=0; x < rootNodes.size(); x++) {
+                Node rootNode = rootNodes.get(x);
+
+                // nodeArray(selector, rootNodes.item(x)
 
                 NodeList nodes = (NodeList) xPath.compile(selector)
                         .evaluate(rootNode, XPathConstants.NODESET);
@@ -94,6 +89,22 @@ public class XMLFormat extends Parser {
         } catch (XPathExpressionException ex) {}
 
         return values;
+    }
+
+    private ArrayList<Node> nodeArray(String selector, Node rootNode) {
+        ArrayList list = new ArrayList<>();
+
+        try {
+            NodeList nodes = (NodeList) xPath.compile(selector)
+                    .evaluate(rootNode, XPathConstants.NODESET);
+
+            for(int x=0; x < nodes.getLength(); x++) {
+                list.add(nodes.item(x));
+            }
+
+        } catch (XPathExpressionException ex) {}
+
+        return list;
     }
 
     @Override
@@ -109,28 +120,32 @@ public class XMLFormat extends Parser {
 
     @Override
     public List getValues(FTLField field) {
-        NodeList rootNodes = findNodes(field.selectors);
+        ArrayList rootNodes = findNodes(field.selectors);
 
         return getValues(field, rootNodes);
     }
 
-    public List getValues(FTLField field, NodeList rootNodes) {
+    public List getValues(FTLField field, ArrayList<Node> rootNodes) {
 
         if(field.hasSubFields()) {
             List list = new ArrayList<>();
-            HashMap subMap = new HashMap<>();
 
-            for(FTLField subField : field.subSelectors) {
-                // clean this up. ignoring getSelctor
-                try {
-                    NodeList nodes = (NodeList) xPath.compile(subField.selectors[0])
-                            .evaluate(rootNodes.item(0), XPathConstants.NODESET);
+            for(Node rootNode : rootNodes) {
+                HashMap subMap = new HashMap<>();
 
-                    subMap.put(subField.key, getValues(subField, nodes));
-                } catch( XPathExpressionException ex) {}
+                for(FTLField subField : field.subSelectors) {
+
+                    ArrayList<Node> nodes = findNodes(subField.selectors, rootNode);
+
+                    // FIX
+                    List values = getValues(subField, nodes);
+                    if(values.size() > 0) {
+                        subMap.put(subField.key, values.get(0));
+                    }
+
+                }
+                list.add(subMap);
             }
-
-            list.add(subMap);
 
             return list;
 

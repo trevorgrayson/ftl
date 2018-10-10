@@ -28,11 +28,15 @@ public class FTLField {
         // if the selector ends with `*`, it will return multiple values.
         if(selector.endsWith("*") && !selector.endsWith("/*")) {
             isMultiValue = true;
-            selector = selector.substring(0, selector.length() - 1);
+            selector = selector.substring(0, selector.length() - 1).replaceAll("[*]$", "");
         }
 
         // `|` represents fallback selectors
         selectors = selector.split("[|]");
+
+        for(int x=0; x<selectors.length; x++) {
+            selectors[x] = selectors[x].replaceAll("[*]$", "");
+        }
     }
 
     public void construct(String key, LinkedHashMap<String, Object> selector) {
@@ -42,7 +46,8 @@ public class FTLField {
         LinkedHashMap<String, String> subValues = (LinkedHashMap) selector.get(selectors[0]);
 
         subValues.forEach((k, val) ->
-            subSelectors.add(new FTLField(k, val))
+                // meh? .replaceAll("[*]$", "")
+            subSelectors.add(new FTLField(k.replaceAll("[*]$", ""), val.replaceAll("[*]$", "")))
         );
 
     }
