@@ -32,7 +32,7 @@ public class FTLDefinition {
         HashMap values = new HashMap();
 
         fields.forEach((field) ->
-            values.put(field.key, field.selector)
+            values.put(field.key, field.selectors)
         );
 
         Parser parser;

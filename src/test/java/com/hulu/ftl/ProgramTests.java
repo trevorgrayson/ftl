@@ -18,8 +18,8 @@ public class ProgramTests {
 
     @Before
     public void initialize() throws Exception {
-        FTLDefinition definition = new FTLDefinition("program.ftl");
-        program =  definition.parse("program.xml");
+        FTLDefinition definition = new FTLDefinition("movie.ftl");
+        program =  definition.parse("movie.xml");
     }
 
     @Test
@@ -43,13 +43,13 @@ public class ProgramTests {
         assertEquals(description, program.get("description"));
     }
 
-    @Test
-    public void genres() {
-        ArrayList titles = (ArrayList) program.get("genres");
-
-        assertEquals(2, titles.size());
-        assertEquals("The unbelievable journey in a crazy plane", titles.get(0));
-    }
+//    @Test
+//    public void multiRatings() {
+//        ArrayList ratings = (ArrayList) program.get("ratings");
+//
+//        assertEquals(1, ratings.size());
+//        assertEquals("G", ratings.get(0));
+//    }
 
     @Test
     public void multiValueReturnsOne() {

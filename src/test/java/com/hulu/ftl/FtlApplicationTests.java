@@ -70,15 +70,16 @@ public class FtlApplicationTests {
 
     @Test
     public void actor() {
-        HashMap actors = (HashMap) program.get("actor");
-        assertEquals("Richard", actors.get("first"));
-        assertEquals("Anderson", actors.get("last"));
+        HashMap<String, String> actor = (HashMap) program.get("actor");
+
+        assertEquals("Richard", actor.get("first"));
+        assertEquals("Anderson", actor.get("last"));
     }
 
-//    @Test
-//    public void actors() {
-//        List<HashMap> actors = (List<HashMap>) program.get("actors");
-//        assertEquals("Richard", actors.get(0).get("first"));
-////        assertEquals("Anderson", actors.get("last"));
-//    }
+    @Test
+    public void actors() {
+        List<HashMap> actors = (List<HashMap>) program.get("actors");
+        assertEquals("Richard", actors.get(0).get("first"));
+        assertEquals("Anderson", actors.get(0).get("last"));
+    }
 }

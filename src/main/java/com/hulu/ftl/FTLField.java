@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 
 public class FTLField {
     public String key;
-    public String selector;
     public String[] selectors;
 
     public ArrayList<FTLField> subSelectors = new ArrayList<>();
@@ -34,8 +33,6 @@ public class FTLField {
 
         // `|` represents fallback selectors
         selectors = selector.split("[|]");
-
-        this.selector = selector;
     }
 
     public void construct(String key, LinkedHashMap<String, Object> selector) {
@@ -45,9 +42,13 @@ public class FTLField {
         LinkedHashMap<String, String> subValues = (LinkedHashMap) selector.get(selectors[0]);
 
         subValues.forEach((k, val) ->
-                subSelectors.add(new FTLField(k, val))
+            subSelectors.add(new FTLField(k, val))
         );
 
+    }
+
+    public Boolean hasSubFields() {
+        return subSelectors.size() > 0;
     }
 
 }
