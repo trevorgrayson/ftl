@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class FTLDefinition {
 
     ArrayList<FTLField> fields = new ArrayList<>();
