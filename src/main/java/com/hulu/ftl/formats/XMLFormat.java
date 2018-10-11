@@ -1,8 +1,6 @@
 package com.hulu.ftl.formats;
 
 import com.hulu.ftl.FTLField;
-import com.sun.org.apache.xml.internal.dtm.ref.DTMNodeList;
-import com.sun.org.apache.xml.internal.dtm.ref.DTMNodeListBase;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -43,6 +41,7 @@ public class XMLFormat extends Parser {
         for(int x=0; x<rootSelectors.length; x++) {
             rootSelectors[x] = "/*/" + rootSelectors[x];
         }
+
 
         return findNodes(rootSelectors, document);
     }

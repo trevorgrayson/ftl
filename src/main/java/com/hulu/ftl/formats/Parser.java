@@ -1,8 +1,6 @@
 package com.hulu.ftl.formats;
 
 import com.hulu.ftl.FTLField;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +31,7 @@ public abstract class Parser {
     }
 
     public Object getValue(FTLField field) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException("getValue method not implemented for this format!");
     }
 
     public List<Object> getValues(FTLField field) {
