@@ -28,6 +28,7 @@ public class FTLField {
         // if the selector ends with `*`, it will return multiple values.
         if(selector.endsWith("*") && !selector.endsWith("/*")) {
             isMultiValue = true;
+
             selector = selector.substring(0, selector.length() - 1).replaceAll("[*]$", "");
         }
 
@@ -41,15 +42,31 @@ public class FTLField {
 
     public void construct(String key, LinkedHashMap<String, Object> selector) {
         this.key = key;
+
         selectors = Arrays.copyOf(selector.keySet().toArray(), selector.values().size(), String[].class);
 
-        LinkedHashMap<String, String> subValues = (LinkedHashMap) selector.get(selectors[0]);
+        for(int x=0; x<selectors.length; x++) {
+            String sel = selectors[x];
 
-        subValues.forEach((k, val) ->
-                // meh? .replaceAll("[*]$", "")
-            subSelectors.add(new FTLField(k.replaceAll("[*]$", ""), val.replaceAll("[*]$", "")))
-        );
+            if(sel.endsWith("*") && !sel.endsWith("/*")) {
+                isMultiValue = true;
+            }
 
+            selectors[x] = selectors[x].replaceAll("[*]$", "");
+            // lazy. doubling memory, fix this.
+            selector.put(selectors[x], selector.get(sel));
+        }
+
+        for(String sel : selectors) {
+            LinkedHashMap<String, String> subValues = (LinkedHashMap) selector.get(sel);
+
+            subValues.forEach((k, val) ->
+                    // meh? .replaceAll("[*]$", "")
+                    subSelectors.add(new FTLField(k,
+                            val.replaceAll("[*]$", ""))
+                    )
+            );
+        }
     }
 
     public Boolean hasSubFields() {
