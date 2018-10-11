@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class ProgramTests {
     @Before
     public void initialize() throws Exception {
         FTLDefinition definition = new FTLDefinition("movie.ftl");
-        program =  definition.parse("movie.xml");
+        program =  definition.parse(new File("movie.xml"));
     }
 
     @Test

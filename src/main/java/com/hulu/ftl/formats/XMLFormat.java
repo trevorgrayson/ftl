@@ -13,6 +13,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,11 +26,11 @@ public class XMLFormat extends Parser {
 
     XPath xPath = XPathFactory.newInstance().newXPath();
 
-    public XMLFormat(String filename) throws IOException {
+    public XMLFormat(InputStream stream) throws IOException {
         try {
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
-            document = builder.parse(filename);
+            document = builder.parse(stream);
         } catch (ParserConfigurationException | SAXException | IOException ex) {
             throw new IOException();
         }

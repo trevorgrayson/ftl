@@ -3,8 +3,13 @@ package com.hulu.ftl;
 import com.hulu.ftl.formats.Parser;
 import com.hulu.ftl.formats.XMLFormat;
 import org.yaml.snakeyaml.Yaml;
+import sun.misc.IOUtils;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,17 +34,28 @@ public class FTLDefinition {
     }
 
     public Map parse(String filename) throws Exception {
-        String format = filename.substring(filename.lastIndexOf("."));
-        HashMap values = new HashMap();
+        return parse(new File(filename));
+    }
 
-        fields.forEach((field) ->
-            values.put(field.key, field.selectors)
-        );
+    public Map parse(File file) throws Exception {
+        String filename = file.getName();
+
+        String format = filename.substring(filename.lastIndexOf("."));
+        InputStream stream = new FileInputStream(file);
+
+        return parse(stream, format);
+    }
+
+    public Map parse(String body, String format) throws Exception {
+        return parse(new ByteArrayInputStream(body.getBytes()), format);
+    }
+
+    public Map parse(InputStream stream, String format) throws Exception {
 
         Parser parser;
 
         switch(format) {
-            case ".xml": parser = new XMLFormat(filename); break;
+            case ".xml": parser = new XMLFormat(stream); break;
             default:
                 throw new Exception("No parser for format type.");
         }
