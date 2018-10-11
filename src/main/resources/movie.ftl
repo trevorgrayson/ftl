@@ -11,7 +11,7 @@ genres: genres/genre*
 type: progType
 actor:
     cast/member/name:
-        fullName: "$first $last"
+        full_name: "$first $last"
         first: first
         last: last
 actors:
