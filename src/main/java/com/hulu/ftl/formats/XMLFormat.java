@@ -173,6 +173,10 @@ public class XMLFormat extends Parser {
                             Arrays.copyOfRange(elements, 0, end)
                     ).collect(Collectors.joining("/"));
 
+                    if(end != 0) {
+                        attrSelector += "/";
+                    }
+
                     attrSelector += "@" + elements[end];
 
                     values = getBySelector(attrSelector);
