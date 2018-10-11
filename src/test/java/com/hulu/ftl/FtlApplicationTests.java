@@ -50,6 +50,12 @@ public class FtlApplicationTests {
     }
 
     @Test
+    public void filter() {
+        String description = "Spanish.";
+        assertEquals(description, program.get("description_es"));
+    }
+
+    @Test
     public void multiValue() {
         ArrayList titles = (ArrayList) program.get("title");
 
@@ -70,6 +76,7 @@ public class FtlApplicationTests {
 
         assertEquals("Richard", actor.get("first"));
         assertEquals("Anderson", actor.get("last"));
+        assertEquals("Richard Anderson", actor.get("fullName"));
     }
 
     @Test

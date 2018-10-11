@@ -8,6 +8,7 @@
         <desc size="100" type="plot" lang="en">Century club.</desc>
         <desc size="60" type="plot" lang="en">This description is sufficiently long.</desc>
         <desc size="40" type="plot" lang="en">I'm a Banana.</desc>
+        <desc size="40" type="plot" lang="es">Spanish.</desc>
     </descriptions>
     <cast>
         <member personId="100" ord="01">
