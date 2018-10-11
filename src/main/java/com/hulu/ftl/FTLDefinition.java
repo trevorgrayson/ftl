@@ -3,15 +3,12 @@ package com.hulu.ftl;
 import com.hulu.ftl.formats.Parser;
 import com.hulu.ftl.formats.XMLFormat;
 import org.yaml.snakeyaml.Yaml;
-import sun.misc.IOUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 
