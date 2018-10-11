@@ -140,6 +140,8 @@ public class XMLFormat extends Parser {
                     List values = getValues(subField, nodes);
                     if(values.size() > 0) {
                         subMap.put(subField.key, values.get(0));
+                    } else if (isTemplate(subField.selectors)) {
+                        subMap.put(subField.key, subField.selectors[0]);
                     }
 
                 }
@@ -181,5 +183,13 @@ public class XMLFormat extends Parser {
         }
 
         return new ArrayList();
+    }
+
+    private boolean isTemplate(String[] selectors) {
+        boolean result = false;
+        for (String selector : selectors) {
+            result = result || selector.contains("$");
+        }
+        return result;
     }
 }
