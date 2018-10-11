@@ -3,7 +3,6 @@ id: !!str TMSId
 fallback: nope|rootId
 title: titles/title*
 description: descriptions/desc
-description_es: descriptions/desc[@lang='es']
 premiere: origAirDate
 # blank lines are ok
 
