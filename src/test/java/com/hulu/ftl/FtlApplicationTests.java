@@ -70,7 +70,7 @@ public class FtlApplicationTests {
 
         assertEquals("Richard", actor.get("first"));
         assertEquals("Anderson", actor.get("last"));
-        assertEquals("Richard Anderson", actor.get("fullName"));
+        assertEquals("Richard Anderson", actor.get("full_name"));
     }
 
     @Test

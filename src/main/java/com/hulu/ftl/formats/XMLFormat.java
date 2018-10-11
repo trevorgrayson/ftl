@@ -113,6 +113,8 @@ public class XMLFormat extends Parser {
 
         if(values.size() > 0) {
             return values.get(0);
+        } else if (isTemplate(field.selectors)) {
+            return field.selectors[0];
         }
 
         return null;
