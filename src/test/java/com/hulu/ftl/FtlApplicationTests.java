@@ -58,6 +58,14 @@ public class FtlApplicationTests {
     }
 
     @Test
+    public void multiValueAttr() {
+        ArrayList ratings = (ArrayList) program.get("ratings");
+
+        assertEquals(3, ratings.size());
+        assertEquals("G", ratings.get(0));
+    }
+
+    @Test
     public void multiValueReturnsOne() {
         ArrayList genres = (ArrayList) program.get("genres");
         assertEquals(1, genres.size());
