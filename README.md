@@ -46,6 +46,9 @@ title
 descriptions/description
 year
 genres/genre*
+cast:
+  cast/member:
+    full_name: "$first $last"
 ```
 
 
@@ -71,6 +74,12 @@ Consider the above `Key-Value Map Definition`.  It can be used to both define th
     <genre>Action</genre>
     <genre>Crime</genre>
   </genres>
+  <cast>
+    <member>
+      <first>Richard</first>
+      <middle>Dean</middle>
+      <last>Anderson</last>
+    </member>
 </movie>
 ```
 
@@ -82,6 +91,7 @@ title: Heat
 descriptions: "A great Movie"
 premiere: 1995
 genres: ["Action", "Crime"]
+cast: ["Richard Anderson"]
 ```
 
 The same KV Definition can be used to render another XML document.  In this case, it would render an XML document, but may not necessarily render the same XML document.
