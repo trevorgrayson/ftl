@@ -32,7 +32,7 @@ public class XMLFormat extends Parser {
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
             document = builder.parse(stream);
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            throw new IOException();
+            throw new IOException(ex.getMessage());
         }
     }
 
