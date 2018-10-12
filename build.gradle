@@ -16,7 +16,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-group = 'com.hulu.ftl'
+group = 'com.github.trevorgrayson'
 version = '0.3.0'
 sourceCompatibility = 1.8
 
