@@ -14,10 +14,8 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class XMLFormat extends Parser {
@@ -69,7 +67,7 @@ public class XMLFormat extends Parser {
         return getBySelector(selector, nodeArray("/*", document));
     }
 
-    public ArrayList<String> getBySelector(String selector, ArrayList<Node> rootNodes) {
+    public ArrayList<String> getBySelector(String selector, List<Node> rootNodes) {
         ArrayList<String> values = new ArrayList<>();
 
         try {
@@ -82,7 +80,9 @@ public class XMLFormat extends Parser {
                         .evaluate(rootNode, XPathConstants.NODESET);
 
                 for (int i = 0; i < nodes.getLength(); i++) {
-                    values.add(nodes.item(i).getNodeValue());
+                    String value = nodes.item(i).getNodeValue();
+                    if (!Pattern.matches("\\s*", value))
+                        values.add(value);
                 }
             }
 
@@ -127,7 +127,7 @@ public class XMLFormat extends Parser {
         return getValues(field, rootNodes);
     }
 
-    public List getValues(FTLField field, ArrayList<Node> rootNodes) {
+    public List getValues(FTLField field, List<Node> rootNodes) {
 
         if(field.hasSubFields()) {
             List list = new ArrayList<>();
@@ -139,8 +139,7 @@ public class XMLFormat extends Parser {
 
                     ArrayList<Node> nodes = findNodes(subField.selectors, rootNode);
 
-                    // FIX
-                    List values = getValues(subField, nodes);
+                    List values = getValues(subField, Collections.singletonList(rootNode));
                     if(values.size() > 0) {
                         subMap.put(subField.key, values.get(0));
                     } else if (isTemplate(subField.selectors)) {
@@ -180,6 +179,8 @@ public class XMLFormat extends Parser {
                     attrSelector += "@" + elements[end];
 
                     values = getBySelector(attrSelector);
+                    values.addAll(getBySelector(attrSelector, rootNodes));
+                    values.addAll(getBySelector(selector + "/text()", rootNodes));
 
                     if(values.size() > 0) {
                         return values;
