@@ -12,6 +12,7 @@
     </descriptions>
     <cast>
         <member personId="100" ord="01">
+            <characterName>Bob</characterName>
             <role>Actor</role>
             <name nameId="1">
                 <first>Richard</first>
@@ -19,6 +20,7 @@
             </name>
         </member>
         <member personId="200" ord="02">
+            <characterName>Robert</characterName>
             <role>Actor</role>
             <name nameId="2">
                 <first>Dana</first>
@@ -26,6 +28,7 @@
             </name>
         </member>
         <member personId="300" ord="03">
+            <characterName>Mike</characterName>
             <role>Actor</role>
             <name nameId="3">
                 <first>Michael</first>
@@ -33,6 +36,22 @@
             </name>
         </member>
     </cast>
+    <crew>
+        <member personId="73981" ord="01">
+            <role>Director</role>
+            <name nameId="73981">
+                <first>Lamont</first>
+                <last>Johnson</last>
+            </name>
+        </member>
+        <member personId="647866" ord="02">
+            <role>Executive Producer</role>
+            <name nameId="672943">
+                <first>Chris</first>
+                <last>Licht</last>
+            </name>
+        </member>
+    </crew>
     <progType>Series</progType>
     <genres>
         <genre genreId="1">Sitcom</genre>
@@ -42,6 +61,33 @@
         <rating area="R&#x00E9;gie du cin&#x00E9;ma" code="G" description="General" ratingsBody="R&#x00E9;gie du cin&#x00E9;ma"> </rating>
         <rating area="USA Parental Rating" code="TVG" ratingsBody="USA Parental Rating"> </rating>
     </ratings>
+    <assets>
+        <asset assetId="p10075_d_v5_aa" lastModified="2010-11-26T00:00:00Z" action="add" category="Box Art" width="240" height="360" type="image/jpg" primary="true">
+            <URI>assets/p10075_d_v5_aa.jpg</URI>
+            <caption lang="en">The Witches of Eastwick (1987)</caption>
+        </asset>
+        <asset assetId="p10075_d_v6_aa" lastModified="2010-11-26T00:00:00Z" action="add" category="Box Art" width="120" height="180" type="image/jpg" primary="true">
+            <URI>assets/p10075_d_v6_aa.jpg</URI>
+            <caption lang="en">The Witches of Eastwick (1987)</caption>
+        </asset>
+    </assets>
+    <awards>
+        <award>
+            <name awardId="1">Academy Award</name>
+            <category awardCatId="13">Music (Original Score)</category>
+            <year>1987</year>
+        </award>
+        <award won="true">
+            <name awardId="6">British Academy of Film &amp; Television Arts</name>
+            <category awardCatId="132">Achievement in Special Effects</category>
+            <year>1987</year>
+        </award>
+        <award>
+            <name awardId="1">Academy Award</name>
+            <category awardCatId="16">Sound Mixing</category>
+            <year>1987</year>
+        </award>
+    </awards>
     <origAirDate>1982-12-31</origAirDate>
     <colorCode>Color</colorCode>
     <episodeInfo>

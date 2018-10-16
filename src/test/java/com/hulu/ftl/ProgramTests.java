@@ -15,7 +15,7 @@ public class ProgramTests {
 
     @Before
     public void initialize() throws Exception {
-        FTLDefinition definition = new FTLDefinition("movie.ftl");
+        FTLDefinition definition = new FTLDefinition("program.ftl");
         program =  definition.parse(new File("movie.xml"));
     }
 

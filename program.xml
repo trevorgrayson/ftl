@@ -163,6 +163,23 @@
     </rating>
     <qualityRating ratingsBody="TMS" value="2"/>
 </ratings>
+<awards>
+    <award>
+        <name awardId="1">Academy Award</name>
+        <category awardCatId="13">Music (Original Score)</category>
+        <year>1987</year>
+    </award>
+    <award won="true">
+        <name awardId="6">British Academy of Film &amp; Television Arts</name>
+        <category awardCatId="132">Achievement in Special Effects</category>
+        <year>1987</year>
+    </award>
+    <award>
+        <name awardId="1">Academy Award</name>
+        <category awardCatId="16">Sound Mixing</category>
+        <year>1987</year>
+    </award>
+</awards>
 <colorCode>Color</colorCode>
 <movieInfo>
     <releases>
