@@ -52,4 +52,12 @@
     <runTime>PT1H30M</runTime>
     <origAudioLang>en-GB</origAudioLang>
     <sourceType>Syndicated</sourceType>
+    <movieInfo>
+        <releases>
+            <release type="Year" date="2000"/>
+            <release type="Original" date="2001-01-19">
+                <country>ESP</country>
+            </release>
+        </releases>
+    </movieInfo>
 </program>

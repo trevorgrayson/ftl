@@ -1,19 +1,26 @@
 id: TMSId|rootId
+fallback: nope|rootId
 name: !!str titles/title
 description: descriptions/desc
 premiere: origAirDate
 
 ratings: ratings/rating*
 genres: genres/genre*
-duration:
+duration: runTime
 type: progType
+ratings: ratings/rating/code*
+releases:
+    movieInfo/releases/release*:
+        type: type
+        date: date
 
-# ratings
+actors:
+    cast/member*:
+        role: role
+        first: name/first
+        last: name/last
+        full_name: $first $last
 
-
-releases: movieInfo/releases/release
-# - type
-# - date
 # credits
 # artwork
 # language
