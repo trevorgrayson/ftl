@@ -1,4 +1,5 @@
 id: TMSId|rootId
+root: rootId
 fallback: nope|rootId
 name: !!str titles/title
 description: descriptions/desc
@@ -13,31 +14,45 @@ releases:
     movieInfo/releases/release*:
         type: type
         date: date
+        country: country
 
 actors:
     cast/member*:
         role: role
         first: name/first
         last: name/last
-        full_name: $first $last
+        full_name: !template "$first $last"
+        id: name/nameId
 
-# credits
-# artwork
-# language
-# awards
+credits:
+    crew/member*:
+        role: role
+        first: name/first
+        last: name/last
+        full_name: !template "$first $last"
+        id: name/nameId
 
-# source:
+artwork:
+    assets/asset*:
+        width: width
+        height: height
+        category: category
+        type: type
+        asset_id: assetId
+        tier: tier
+
+language: origAudioLang
+awards:
+    awards/award*:
+        name: name
+        category: category
+        year: year
+        won: won
+
+source: !lit gracenote
+
 # external_ids
 # - namespace
 # - id
-# releases
-# - datetime
-# - release_type
-# - country
-# cast_and_crew - full_name
-# - order
-# - role
-# - characters
-# person_id
 
 # TODO MAP ENUMS

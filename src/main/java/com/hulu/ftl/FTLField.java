@@ -1,5 +1,8 @@
 package com.hulu.ftl;
 
+import com.hulu.ftl.annotations.Annotation;
+import com.hulu.ftl.annotations.Literal;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -7,6 +10,7 @@ import java.util.LinkedHashMap;
 public class FTLField {
     public String key;
     public String[] selectors;
+    public Object annotation;
 
     public ArrayList<FTLField> subSelectors = new ArrayList<>();
 
@@ -19,7 +23,17 @@ public class FTLField {
             case "LinkedHashMap":
                 construct(key, (LinkedHashMap<String, Object>) selector);
                 break;
+            case "Literal":
+            case "Template":
+                construct(key, (Annotation) selector);
+                break;
         }
+    }
+
+    public void construct(String key, Annotation value) {
+        this.key = key;
+        selectors = new String[0];
+        annotation = value;
     }
 
     public void construct(String key, String selector) {
@@ -58,14 +72,15 @@ public class FTLField {
         }
 
         for(String sel : selectors) {
-            LinkedHashMap<String, String> subValues = (LinkedHashMap) selector.get(sel);
+            LinkedHashMap<String, Object> subValues = (LinkedHashMap) selector.get(sel);
 
-            subValues.forEach((k, val) ->
-                    // meh? .replaceAll("[*]$", "")
-                    subSelectors.add(new FTLField(k,
-                            val.replaceAll("[*]$", ""))
-                    )
-            );
+            subValues.forEach((k, val) -> {
+                // meh? .replaceAll("[*]$", "")
+                if (val instanceof String)
+                    subSelectors.add(new FTLField(k, ((String)val).replaceAll("[*]$", "")));
+                else
+                    subSelectors.add(new FTLField(k, val));
+            });
         }
     }
 

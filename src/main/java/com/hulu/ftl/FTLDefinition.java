@@ -1,5 +1,7 @@
 package com.hulu.ftl;
 
+import com.hulu.ftl.annotations.Literal;
+import com.hulu.ftl.annotations.Template;
 import java.util.ArrayList;
 import java.util.Map;
 import java.io.*;
@@ -7,7 +9,9 @@ import java.io.*;
 import com.hulu.ftl.exceptions.FTLNotImplemented;
 import com.hulu.ftl.formats.Parser;
 import com.hulu.ftl.formats.XMLFormat;
+import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 
 public class FTLDefinition {
@@ -16,7 +20,12 @@ public class FTLDefinition {
 
     public FTLDefinition(String configFTL) {
 
-        Yaml yaml = new Yaml();
+        Constructor constructor = new Constructor();
+        constructor.addTypeDescription(new TypeDescription(Literal.class, "!literal"));
+        constructor.addTypeDescription(new TypeDescription(Literal.class, "!lit"));
+        constructor.addTypeDescription(new TypeDescription(Template.class, "!template"));
+
+        Yaml yaml = new Yaml(constructor);
         InputStream inputStream = this.getClass()
                 .getClassLoader()
                 .getResourceAsStream(configFTL);
