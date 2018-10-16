@@ -2,18 +2,16 @@ package com.hulu.ftl;
 
 import com.hulu.ftl.annotations.Literal;
 import com.hulu.ftl.annotations.Template;
+import java.util.ArrayList;
+import java.util.Map;
+import java.io.*;
+
+import com.hulu.ftl.exceptions.FTLNotImplemented;
 import com.hulu.ftl.formats.Parser;
 import com.hulu.ftl.formats.XMLFormat;
 import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
-
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Map;
 
 
 public class FTLDefinition {
@@ -39,11 +37,13 @@ public class FTLDefinition {
         );
     }
 
-    public Map parse(String filename) throws Exception {
+    public Map parse(String filename)
+            throws IOException, FTLNotImplemented {
         return parse(new File(filename));
     }
 
-    public Map parse(File file) throws Exception {
+    public Map parse(File file)
+            throws IOException, FTLNotImplemented {
         String filename = file.getName();
 
         String format = filename.substring(filename.lastIndexOf("."));
@@ -52,18 +52,17 @@ public class FTLDefinition {
         return parse(stream, format);
     }
 
-    public Map parse(String body, String format) throws Exception {
+    public Map parse(String body, String format) throws FTLNotImplemented, IOException {
         return parse(new ByteArrayInputStream(body.getBytes()), format);
     }
 
-    public Map parse(InputStream stream, String format) throws Exception {
+    public Map parse(InputStream stream, String format) throws FTLNotImplemented, IOException {
 
         Parser parser;
 
         switch(format) {
             case ".xml": parser = new XMLFormat(stream); break;
-            default:
-                throw new Exception("No parser for format type.");
+            default: throw new FTLNotImplemented();
         }
 
         return parser.extract(fields);
