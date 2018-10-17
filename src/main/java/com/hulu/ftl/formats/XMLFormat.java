@@ -46,21 +46,21 @@ public class XMLFormat extends Parser {
     }
 
     public ArrayList<Node> findNodes(String[] selectors, Node document) {
-        ArrayList nodes = null;
-
-        nodes = nodeArray("/*", document);
+        ArrayList nodes = new ArrayList();
 
         for (int x = 0; x < selectors.length; x++) {
             String selector = selectors[x];
 
-            nodes = nodeArray(selector, document);
+            nodes.addAll(nodeArray(selector, document));
 
-            if (nodes.size() > 0) {
-                return nodes;
-            }
+
         }
 
-        return nodes;
+        if (nodes.size() > 0) {
+            return nodes;
+        } else {
+            return nodeArray("/*", document);
+        }
     }
 
     public ArrayList<String> getBySelector(String selector) {
@@ -160,11 +160,7 @@ public class XMLFormat extends Parser {
         } else {
 
             // find element text
-            List values = getBySelector("./text()", rootNodes);
-
-            if(values.size() > 0) {
-                return values;
-            }
+            List values = new ArrayList();
 
             // Not found, look for attr
             for(String selector : field.selectors) {
@@ -183,9 +179,13 @@ public class XMLFormat extends Parser {
 
                     attrSelector += "@" + elements[end];
 
-                    values = getBySelector(attrSelector);
-                    values.addAll(getBySelector(attrSelector, rootNodes));
-                    values.addAll(getBySelector(selector + "/text()", rootNodes));
+                    values.addAll(getBySelector(attrSelector));
+                    if (values.size() == 0)
+                        values.addAll(getBySelector(attrSelector, rootNodes));
+                    if (values.size() == 0)
+                        values.addAll(getBySelector(selector + "/text()", rootNodes));
+                    if (values.size() == 0)
+                        values.addAll(getBySelector("./text()", rootNodes));
 
 
                     if(values.size() > 0) {
@@ -193,7 +193,6 @@ public class XMLFormat extends Parser {
                     }
                 }
             }
-
         }
 
         return new ArrayList();
