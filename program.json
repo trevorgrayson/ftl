@@ -1,0 +1,98 @@
+{
+  "series": {
+    "id": "2",
+    "name": "Test Series",
+    "uri": "http://fakeurl.fakeurl/series/2"
+  },
+  "artworks": {
+    "en": []
+  },
+  "number": null,
+  "restriction_level": "kid_appropriate",
+  "images": [],
+  "guests": [],
+  "duration": null,
+  "id": "1",
+  "ratings": [
+    {
+      "code": "TVG",
+      "description": "",
+      "authority": "USA Parental Rating"
+    },
+    {
+      "code": "G",
+      "description": "",
+      "authority": "Canadian Parental Rating"
+    },
+    {
+      "code": "G",
+      "description": "General",
+      "authority": "Régie du cinéma"
+    }
+  ],
+  "genres": [
+    {
+      "id": "5",
+      "name": "Comedy"
+    },
+    {
+      "id": "22",
+      "name": "Sitcom"
+    }
+  ],
+  "entity_type": "episode",
+  "season": {},
+  "events": [],
+  "names": {
+    "en": "Pilot",
+    "es": "Spanish"
+  },
+  "description": "Amy works on FTL a lot.",
+  "premiere": "2018-12-30T12:00:00Z",
+  "credits": {
+    "actor": [
+      {
+        "characters": [],
+        "id": "e5525c20-d4d8-4874-a130-2103d8113c5e",
+        "full_name": "Bob Bobson",
+        "order": 1
+      },
+      {
+        "characters": [],
+        "id": "e420ddeb-3e87-4946-8168-e3104bada090",
+        "full_name": "Carmen Sandiego",
+        "order": 2
+      },
+      {
+        "characters": [],
+        "id": "a8c6612c-a95b-4f4c-a90b-3ec9e8b911a9",
+        "full_name": "Rose Rose",
+        "order": 3
+      },
+      {
+        "characters": [],
+        "id": "91d7e74f-d4cc-49f7-9975-563d1bce0b74",
+        "full_name": "Vicki Nicki",
+        "order": 4
+      }
+    ]
+  },
+  "awards": [],
+  "name": "Pilot",
+  "external_identifiers": [
+    {
+      "identifier": "10000000",
+      "namespace": "gracenote_episode"
+    },
+    {
+      "identifier": "EP000000000001",
+      "namespace": "tms"
+    }
+  ],
+  "uri": "http://fakeurl.fakeurl/episode/1",
+  "directors": [],
+  "hosts": [],
+  "descriptions": {
+    "en": "Amy works on FTL a lot."
+  }
+}

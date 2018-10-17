@@ -40,7 +40,7 @@ public class FTLField {
         this.key = key;
 
         // if the selector ends with `*`, it will return multiple values.
-        if(selector.endsWith("*") && !selector.endsWith("/*")) {
+        if(selector.endsWith("*")) {
             isMultiValue = true;
 
             selector = selector.substring(0, selector.length() - 1).replaceAll("[*]$", "");
@@ -62,7 +62,7 @@ public class FTLField {
         for(int x=0; x<selectors.length; x++) {
             String sel = selectors[x];
 
-            if(sel.endsWith("*") && !sel.endsWith("/*")) {
+            if(sel.endsWith("*")) {
                 isMultiValue = true;
             }
 
@@ -77,7 +77,7 @@ public class FTLField {
             subValues.forEach((k, val) -> {
                 // meh? .replaceAll("[*]$", "")
                 if (val instanceof String)
-                    subSelectors.add(new FTLField(k, ((String)val).replaceAll("[*]$", "")));
+                    subSelectors.add(new FTLField(k, ((String)val)));
                 else
                     subSelectors.add(new FTLField(k, val));
             });

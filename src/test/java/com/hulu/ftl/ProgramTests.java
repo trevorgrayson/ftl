@@ -52,7 +52,7 @@ public class ProgramTests {
     public void multiValueReturnsOne() {
         ArrayList genres = (ArrayList) program.get("genres");
         assertEquals(1, genres.size());
-        assertEquals("Sitcom", genres.get(0));
+        assertEquals("Sitcom", ((Map)genres.get(0)).get("name"));
     }
 
 }
