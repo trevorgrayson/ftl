@@ -13,11 +13,15 @@ titles:
     titles/title*:
         title: .
         language: lang
+        size: size
+        type: type
 
 descriptions:
     descriptions/desc*:
         desc: .
         language: lang
+        size: size
+        type: type
 
 genres:
     genres/genre*:

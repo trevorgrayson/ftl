@@ -137,6 +137,7 @@ public class XMLFormat extends Parser {
 
             for(Node rootNode : rootNodes) {
                 HashMap subMap = new HashMap<>();
+                int normalValueNum = 0;
 
                 for(FTLField subField : field.subSelectors) {
 
@@ -144,7 +145,11 @@ public class XMLFormat extends Parser {
 
                     // FIX
                     List values = getValues(subField, Collections.singletonList(rootNode));
+
                     if(values.size() > 0) {
+                        if (!isSpecialValue(subField))
+                            ++normalValueNum;
+
                         if (subField.isMultiValue) {
                             subMap.put(subField.key, values);
                         } else {
@@ -153,9 +158,8 @@ public class XMLFormat extends Parser {
                     } else if (isSpecialValue(subField)) {
                         subMap.put(subField.key, field.annotation);
                     }
-
                 }
-                if (subMap.size() > 0)
+                if (normalValueNum > 0)
                     list.add(subMap);
             }
 
