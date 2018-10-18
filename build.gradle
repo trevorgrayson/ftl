@@ -61,5 +61,6 @@ repositories {
 
 dependencies {
     compile('org.yaml:snakeyaml:1.23')
+    compile('com.jayway.jsonpath:json-path:2.4.0')
     testCompile('org.springframework.boot:spring-boot-starter-test:2.0.5.RELEASE')
 }

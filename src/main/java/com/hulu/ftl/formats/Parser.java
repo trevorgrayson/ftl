@@ -17,21 +17,7 @@ public abstract class Parser {
         Map map = new HashMap<>();
 
         for(FTLField field : fields) {
-            if (field.annotation != null) {
-                map.put(field.key,
-                        field.isMultiValue ? getValues(field) : getValue(field)
-                );
-            }
-            for(String selector : field.selectors) {
-
-                map.put(field.key,
-                    field.isMultiValue ? getValues(field) : getValue(field)
-                );
-
-                if(map.get(selector) != null)
-                    continue;
-
-            }
+            addToMap(map, field);
         }
 
         for(FTLField field : fields) {
@@ -74,4 +60,23 @@ public abstract class Parser {
         return value;
     }
 
+    private void addToMap(Map map, FTLField field) {
+        if (field.isMultiValue) {
+            List values = (List)map.get(field.key);
+            if (values != null) {
+                System.out.println(field.key + " " + values);
+                values.addAll(getValues(field));
+            } else {
+                values = getValues(field);
+            }
+            map.put(field.key, values);
+        } else {
+            map.put(field.key, getValue(field));
+        }
+
+    }
+
+    boolean isSpecialValue(FTLField field) {
+        return field.annotation != null;
+    }
 }

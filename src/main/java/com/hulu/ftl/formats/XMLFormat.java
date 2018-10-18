@@ -145,7 +145,11 @@ public class XMLFormat extends Parser {
                     // FIX
                     List values = getValues(subField, Collections.singletonList(rootNode));
                     if(values.size() > 0) {
-                        subMap.put(subField.key, values.get(0));
+                        if (subField.isMultiValue) {
+                            subMap.put(subField.key, values);
+                        } else {
+                            subMap.put(subField.key, values.get(0));
+                        }
                     } else if (isSpecialValue(subField)) {
                         subMap.put(subField.key, field.annotation);
                     }
@@ -196,9 +200,5 @@ public class XMLFormat extends Parser {
         }
 
         return new ArrayList();
-    }
-
-    private boolean isSpecialValue(FTLField field) {
-        return field.annotation != null;
     }
 }

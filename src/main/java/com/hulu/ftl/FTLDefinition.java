@@ -7,6 +7,7 @@ import java.util.Map;
 import java.io.*;
 
 import com.hulu.ftl.exceptions.FTLNotImplemented;
+import com.hulu.ftl.formats.JSONFormat;
 import com.hulu.ftl.formats.Parser;
 import com.hulu.ftl.formats.XMLFormat;
 import org.yaml.snakeyaml.TypeDescription;
@@ -62,6 +63,7 @@ public class FTLDefinition {
 
         switch(format) {
             case ".xml": parser = new XMLFormat(stream); break;
+            case ".json": parser = new JSONFormat(stream); break;
             default: throw new FTLNotImplemented();
         }
 

@@ -1,8 +1,11 @@
-id: TMSId|rootId
-root: rootId
-series_id: connectorId|seriesId
+id: TMSId
+tms_id: TMSId
+root_id: rootId
 fallback: nope|rootId
-name: !!str titles/title
+connector_id: connectorId
+series_id: seriesId
+season_id: seasonId
+name: titles/title
 description: descriptions/desc
 premiere: origAirDate
 
@@ -40,9 +43,10 @@ releases:
 
 credits:
     cast/member*: &person
-        character: characterName
+        characters: characterName*
         role: role
         first: name/first
+        middle: name/middle
         last: name/last
         full_name: !template "$first $last"
         id: name/nameId
@@ -75,12 +79,8 @@ source: !lit gracenote
 
 # TODO: get external_ids to work properly
 #external_ids:
-#    /TMSId*:
-#        namespace: !lit tms
-#        id: .
-#    /rootId*:
-#        namespace: !lit gracenote_episode
-#        id: .
+#        namespace
+#        id
 
 season: episodeInfo/season
 
