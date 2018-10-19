@@ -64,7 +64,6 @@ public abstract class Parser {
         if (field.isMultiValue) {
             List values = (List)map.get(field.key);
             if (values != null) {
-                System.out.println(field.key + " " + values);
                 values.addAll(getValues(field));
             } else {
                 values = getValues(field);
