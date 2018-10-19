@@ -33,9 +33,16 @@ public class FTLDefinition {
 
         Map<String, Object> config = yaml.load(inputStream);
 
-        config.forEach((key, val) ->
-            fields.add(new FTLField(key, val))
-        );
+        config.forEach((key, val) -> {
+            if (val instanceof ArrayList) {
+                ArrayList values = (ArrayList) val;
+                for (Object value : values)
+                    fields.add(new FTLField(key, value));
+            }
+            else {
+                fields.add(new FTLField(key, val));
+            }
+        });
     }
 
     public Map parse(String filename)

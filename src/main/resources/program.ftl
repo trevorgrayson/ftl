@@ -82,9 +82,13 @@ awards:
 source: !lit gracenote
 
 # TODO: get external_ids to work properly
-#external_ids:
-#        namespace
-#        id
+external_ids:
+    - /*:
+        namespace: !lit tms
+        id: TMSId
+    - /*:
+        namespace: !lit gracenote_episode
+        id: rootId
 
 season: episodeInfo/season
 
