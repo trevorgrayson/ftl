@@ -56,11 +56,7 @@ public class XMLFormat extends Parser {
 
         }
 
-        if (nodes.size() > 0) {
-            return nodes;
-        } else {
-            return nodeArray("/*", document);
-        }
+        return nodes;
     }
 
     public ArrayList<String> getBySelector(String selector) {
