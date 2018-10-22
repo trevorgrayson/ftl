@@ -1,4 +1,9 @@
-entity_type: !map [tms_id, {EP.*: episode, SH.*: series, MV.*: movie}]
+entity_type: !map
+    - tms_id
+    -   EP.*: episode
+        SH.*: series
+        MV.*: movie
+
 
 id: TMSId
 tms_id: TMSId
