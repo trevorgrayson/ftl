@@ -10,7 +10,7 @@ public class Template extends Annotation {
     }
 
     @Override
-    public String getValue(Map map) {
+    public Object getValue(Map map) {
         String input = value;
         for (Object item : map.entrySet()) {
             Map.Entry entry = (Map.Entry)item;

@@ -5,7 +5,7 @@ import java.util.Map;
 public abstract class Annotation {
     Object value;
 
-    public String getValue(Map localContext) {
+    public Object getValue(Map localContext) {
         return value.toString();
     }
 

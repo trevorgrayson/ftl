@@ -55,4 +55,10 @@ public class ProgramTests {
         assertEquals("Sitcom", ((Map)genres.get(0)).get("name"));
     }
 
+    @Test
+    public void mapping() {
+        String type = (String) program.get("entity_type");
+        assertEquals("episode", type);
+    }
+
 }
