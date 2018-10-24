@@ -1,12 +1,11 @@
 entity_type: !map
-    - tms_id
+    - _tms_id
     -   EP.*: episode
         SH.*: series
         MV.*: movie
-
+_tms_id: TMSId
 
 id: TMSId
-tms_id: TMSId
 root_id: rootId
 fallback: nope|rootId
 connector_id: connectorId
