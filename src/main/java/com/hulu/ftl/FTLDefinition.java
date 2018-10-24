@@ -1,6 +1,7 @@
 package com.hulu.ftl;
 
 import com.hulu.ftl.annotations.Literal;
+import com.hulu.ftl.annotations.Mapping;
 import com.hulu.ftl.annotations.Template;
 import java.util.ArrayList;
 import java.util.Map;
@@ -25,6 +26,7 @@ public class FTLDefinition {
         constructor.addTypeDescription(new TypeDescription(Literal.class, "!literal"));
         constructor.addTypeDescription(new TypeDescription(Literal.class, "!lit"));
         constructor.addTypeDescription(new TypeDescription(Template.class, "!template"));
+        constructor.addTypeDescription(new TypeDescription(Mapping.class, "!map"));
 
         Yaml yaml = new Yaml(constructor);
         InputStream inputStream = this.getClass()

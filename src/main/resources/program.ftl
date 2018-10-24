@@ -1,3 +1,10 @@
+entity_type: !map
+    - tms_id
+    -   EP.*: episode
+        SH.*: series
+        MV.*: movie
+
+
 id: TMSId
 tms_id: TMSId
 root_id: rootId
@@ -53,7 +60,7 @@ credits:
         middle: name/middle
         last: name/last
         full_name: !template "$first $last"
-        id: name/nameId
+        id: personId
         order: ord
     crew/member*:
         *person

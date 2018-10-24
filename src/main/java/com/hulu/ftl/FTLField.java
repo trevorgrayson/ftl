@@ -1,7 +1,6 @@
 package com.hulu.ftl;
 
 import com.hulu.ftl.annotations.Annotation;
-import com.hulu.ftl.annotations.Literal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +24,7 @@ public class FTLField {
                 break;
             case "Literal":
             case "Template":
+            case "Mapping":
                 construct(key, (Annotation) selector);
                 break;
         }
