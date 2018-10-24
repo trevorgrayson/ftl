@@ -1,9 +1,9 @@
+$tms_id: TMSId
 entity_type: !map
     - $tms_id
     -   EP.*: episode
         SH.*: series
         MV.*: movie
-$tms_id: TMSId
 
 id: TMSId
 root_id: rootId

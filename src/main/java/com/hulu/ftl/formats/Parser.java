@@ -21,12 +21,17 @@ public abstract class Parser {
         }
 
         for(FTLField field : fields) {
-            Object result = postprocess(map.get(field.key), map);
+            Object result = postprocess(map.get(field.key), map, false);
+            map.put(field.key, result);
+
+        }
+
+        for(FTLField field : fields) {
+            Object result = postprocess(map.get(field.key), map, true);
             map.put(field.key, result);
             if (field.key.startsWith("$"))
                 map.remove(field.key);
         }
-
 
         return map;
     }
@@ -42,21 +47,21 @@ public abstract class Parser {
         return list;
     }
 
-    private Object postprocess(Object value, Map localContext) {
+    private Object postprocess(Object value, Map localContext, boolean removeTemp) {
         if (value instanceof Annotation) {
             return ((Annotation)value).getValue(localContext);
         } else if (value instanceof List) {
             List list = (List)value;
             for (int index = 0; index < list.size(); ++index) {
-                list.set(index, postprocess(list.get(index), localContext));
+                list.set(index, postprocess(list.get(index), localContext, removeTemp));
             }
             return list;
         } else if (value instanceof Map) {
             Map valueMap = (Map)value;
             for (Object item : valueMap.entrySet()) {
                 Map.Entry entry = (Map.Entry)item;
-                valueMap.put(entry.getKey(), postprocess(entry.getValue(), valueMap));
-                if (entry.getKey().toString().startsWith("$")) {
+                valueMap.put(entry.getKey(), postprocess(entry.getValue(), valueMap, removeTemp));
+                if (removeTemp && entry.getKey().toString().startsWith("$")) {
                     valueMap.remove(entry.getKey());
                 }
             }
