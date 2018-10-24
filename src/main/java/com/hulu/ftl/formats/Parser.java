@@ -23,7 +23,7 @@ public abstract class Parser {
         for(FTLField field : fields) {
             Object result = postprocess(map.get(field.key), map);
             map.put(field.key, result);
-            if (field.key.startsWith("_"))
+            if (field.key.startsWith("$"))
                 map.remove(field.key);
         }
 
@@ -56,7 +56,7 @@ public abstract class Parser {
             for (Object item : valueMap.entrySet()) {
                 Map.Entry entry = (Map.Entry)item;
                 valueMap.put(entry.getKey(), postprocess(entry.getValue(), valueMap));
-                if (entry.getKey().toString().startsWith("_")) {
+                if (entry.getKey().toString().startsWith("$")) {
                     valueMap.remove(entry.getKey());
                 }
             }
