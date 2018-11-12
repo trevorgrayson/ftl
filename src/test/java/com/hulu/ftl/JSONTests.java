@@ -15,7 +15,6 @@ public class JSONTests {
     public void initialize() throws Exception {
         FTLDefinition definition = new FTLDefinition("jsontest.ftl");
         program =  definition.parse(new File("program.json"));
-        System.out.println(program);
     }
 
     @Test

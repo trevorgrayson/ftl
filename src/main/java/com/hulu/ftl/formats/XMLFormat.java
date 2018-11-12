@@ -41,7 +41,6 @@ public class XMLFormat extends Parser {
             rootSelectors[x] = rootSelectors[x].equals("/") ? "/" : "/*/" + rootSelectors[x];
         }
 
-
         return findNodes(rootSelectors, document);
     }
 
@@ -53,17 +52,16 @@ public class XMLFormat extends Parser {
 
             nodes.addAll(nodeArray(selector, document));
 
-
         }
 
         return nodes;
     }
 
-    public ArrayList<String> getBySelector(String selector) {
+    private ArrayList<String> getBySelector(String selector) {
         return getBySelector(selector, nodeArray("/*", document));
     }
 
-    public ArrayList<String> getBySelector(String selector, List<Node> rootNodes) {
+    private ArrayList<String> getBySelector(String selector, List<Node> rootNodes) {
         ArrayList<String> values = new ArrayList<>();
 
         try {
@@ -103,6 +101,10 @@ public class XMLFormat extends Parser {
         return list;
     }
 
+    /*
+     *  Run-Time deserializing of document
+     */
+
     @Override
     public Object getValue(FTLField field) {
         List<String> values = getValues(field);
@@ -131,11 +133,18 @@ public class XMLFormat extends Parser {
         if(field.hasSubFields()) {
             List list = new ArrayList<>();
 
+            if( rootNodes.size() == 0) {
+                rootNodes.add(document);
+            }
+
             for(Node rootNode : rootNodes) {
                 HashMap subMap = new HashMap<>();
                 int normalValueNum = 0;
 
                 for(FTLField subField : field.subSelectors) {
+                    if(subField.isRootRelative) {
+                        rootNode = document;
+                    }
 
                     ArrayList<Node> nodes = findNodes(subField.selectors, rootNode);
 
@@ -155,7 +164,7 @@ public class XMLFormat extends Parser {
                         subMap.put(subField.key, field.annotation);
                     }
                 }
-                if (normalValueNum > 0)
+                if (normalValueNum > 0 || list.size() == 0)
                     list.add(subMap);
             }
 
@@ -168,13 +177,20 @@ public class XMLFormat extends Parser {
 
             // Not found, look for attr
             for(String selector : field.selectors) {
+                List<Node> originNodes = rootNodes;
+
+                if(field.isRootRelative) {
+                    originNodes = new ArrayList();
+                    originNodes.add(document);
+                }
+
                 String[] elements = selector.split("/");
 
                 if( elements.length > 0) {
                     Integer end = elements.length > 0 ? elements.length - 1 : 0;
 
                     String attrSelector = Arrays.stream(
-                            Arrays.copyOfRange(elements, 0, end)
+                        Arrays.copyOfRange(elements, 0, end)
                     ).collect(Collectors.joining("/"));
 
                     if(end != 0) {
@@ -185,11 +201,11 @@ public class XMLFormat extends Parser {
 
                     values.addAll(getBySelector(attrSelector));
                     if (values.size() == 0)
-                        values.addAll(getBySelector(attrSelector, rootNodes));
+                        values.addAll(getBySelector(attrSelector, originNodes));
                     if (values.size() == 0)
-                        values.addAll(getBySelector(selector + "/text()", rootNodes));
+                        values.addAll(getBySelector(selector + "/text()", originNodes));
                     if (values.size() == 0)
-                        values.addAll(getBySelector("./text()", rootNodes));
+                        values.addAll(getBySelector("./text()", originNodes));
 
 
                     if(values.size() > 0) {

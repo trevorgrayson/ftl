@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -61,4 +63,33 @@ public class ProgramTests {
         assertEquals("episode", type);
     }
 
+    @Test
+    public void findsHashTransforms() {
+        List externalIds = (List) program.get("external_ids");
+
+        assertEquals(externalIds.size(), 2);
+    }
+
+    @Test
+    public void findsHashTransformValues() {
+        List externalIds = (List) program.get("external_ids");
+
+        HashMap<String, String> externalId =
+                (HashMap<String, String>) externalIds.get(0);
+
+        assertEquals(externalId.get("namespace"), "tms");
+        assertEquals(externalId.get("id"), "EP000000060001");
+    }
+
+    @Test
+    public void rootRelativeValue() {
+
+    }
+
+    @Test
+    public void rootRelativeSubValue() {
+
+    }
+
+    // external ids
 }

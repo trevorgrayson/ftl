@@ -128,6 +128,18 @@ title: title|name
 description: descriptions/description[lang=en,es]
 ```
 
+### ENUM Maps
+
+### HashMap Values
+
+You may want to extract more complicated values out of your documents.  You may construct sub-HashMaps
+
+```$xslt
+sub_mapping:
+    - name: value
+
+```
+
 ## Comparison
 
 ### Serializing XML in Java

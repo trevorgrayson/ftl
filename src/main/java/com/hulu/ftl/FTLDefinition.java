@@ -18,7 +18,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 public class FTLDefinition {
 
-    ArrayList<FTLField> fields = new ArrayList<>();
+    public ArrayList<FTLField> fields = new ArrayList<>();
 
     public FTLDefinition(String configFTL) {
 

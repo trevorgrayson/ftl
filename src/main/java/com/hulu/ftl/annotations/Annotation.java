@@ -3,7 +3,7 @@ package com.hulu.ftl.annotations;
 import java.util.Map;
 
 public abstract class Annotation {
-    Object value;
+    public Object value;
 
     public Object getValue(Map localContext) {
         return value.toString();
