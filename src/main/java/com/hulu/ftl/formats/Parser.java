@@ -20,6 +20,10 @@ public abstract class Parser {
             addToMap(map, field);
         }
 
+        return postprocess(map, fields);
+    }
+
+    public Map postprocess(Map map, ArrayList<FTLField> fields) {
         for(FTLField field : fields) {
             Object result = postprocess(map.get(field.key), map, false);
             map.put(field.key, result);
@@ -47,7 +51,7 @@ public abstract class Parser {
         return list;
     }
 
-    private Object postprocess(Object value, Map localContext, boolean removeTemp) {
+    protected Object postprocess(Object value, Map localContext, boolean removeTemp) {
         if (value instanceof Annotation) {
             return ((Annotation)value).getValue(localContext);
         } else if (value instanceof List) {

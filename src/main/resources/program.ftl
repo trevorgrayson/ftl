@@ -16,11 +16,14 @@ description: descriptions/desc
 premiere: origAirDate
 
 titles:
-    titles/title*:
+    episodeInfo/title*: &title_data
         title: .
         language: lang
         size: size
         type: type
+    titles/title*:
+        *title_data
+
 
 descriptions:
     descriptions/desc*:

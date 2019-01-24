@@ -1,9 +1,11 @@
 package com.hulu.ftl;
 
 import com.hulu.ftl.annotations.Annotation;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class FTLField {
@@ -13,7 +15,11 @@ public class FTLField {
 
     public ArrayList<FTLField> subSelectors = new ArrayList<>();
 
+    public ArrayListValuedHashMap<String, FTLField> selectorToSubfields = new ArrayListValuedHashMap<>();
+
     public Boolean isMultiValue = false;
+
+    public HashMap<String, Integer> selectorIndex = new HashMap<>();
 
     public FTLField(String key, Object selector) {
         switch(selector.getClass().getSimpleName()) {
@@ -28,6 +34,8 @@ public class FTLField {
                 construct(key, (Annotation) selector);
                 break;
         }
+        for (int index = 0; index < selectors.length; ++index)
+            selectorIndex.put(selectors[index], index);
     }
 
     public void construct(String key, Annotation value) {
@@ -75,11 +83,9 @@ public class FTLField {
             LinkedHashMap<String, Object> subValues = (LinkedHashMap) selector.get(sel);
 
             subValues.forEach((k, val) -> {
-                // meh? .replaceAll("[*]$", "")
-                if (val instanceof String)
-                    subSelectors.add(new FTLField(k, ((String)val)));
-                else
-                    subSelectors.add(new FTLField(k, val));
+                FTLField newField = new FTLField(k, val);
+                subSelectors.add(newField);
+                selectorToSubfields.put(sel, newField);
             });
         }
     }

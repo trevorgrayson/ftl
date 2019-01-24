@@ -11,6 +11,7 @@ import com.hulu.ftl.exceptions.FTLNotImplemented;
 import com.hulu.ftl.formats.JSONFormat;
 import com.hulu.ftl.formats.Parser;
 import com.hulu.ftl.formats.XMLFormat;
+import com.hulu.ftl.formats.XMLFormat2;
 import org.yaml.snakeyaml.TypeDescription;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -71,7 +72,7 @@ public class FTLDefinition {
         Parser parser;
 
         switch(format) {
-            case ".xml": parser = new XMLFormat(stream); break;
+            case ".xml": parser = new XMLFormat2(stream, fields); break;
             case ".json": parser = new JSONFormat(stream); break;
             default: throw new FTLNotImplemented();
         }
